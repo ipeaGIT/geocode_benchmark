@@ -12,6 +12,7 @@ timings <- tar_read(timings)
 timings <- data.table::rbindlist(timings)
 
 ggplot(timings) +
+  geom_line(aes(x = n_threads, y = time, color = n_rows, group = n_rows)) +
   geom_point(aes(x = n_threads, y = time, color = n_rows))
 ```
 
