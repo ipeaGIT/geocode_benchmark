@@ -4,17 +4,4 @@
 Analisando o efeito do número de threads e observações no tempo de
 processamento.
 
-``` r
-library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.3.3
-library(targets)
-
-timings <- tar_read(timings)
-timings <- data.table::rbindlist(timings)
-
-ggplot(timings) +
-  geom_line(aes(x = n_threads, y = time, color = n_rows, group = n_rows)) +
-  geom_point(aes(x = n_threads, y = time, color = n_rows))
-```
-
-<img src="figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="figures/README-unnamed-chunk-2-1.png" width="100%" /><img src="figures/README-unnamed-chunk-2-2.png" width="100%" />

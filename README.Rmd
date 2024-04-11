@@ -16,14 +16,81 @@ knitr::opts_chunk$set(
 Analisando o efeito do número de threads e observações no tempo de
 processamento.
 
-```{r}
+```{r, echo = FALSE, warning = FALSE}
 library(ggplot2)
 library(targets)
 
 timings <- tar_read(timings)
 timings <- data.table::rbindlist(timings)
 
+timings <- timings[, .(avg_time = mean(time)), by = .(n_threads, n_rows)]
+timings[, expected_speedup := n_threads / n_threads[1], by = n_rows]
+timings[, actual_speedup := avg_time[1] / avg_time, by = n_rows]
+
 ggplot(timings) +
-  geom_line(aes(x = n_threads, y = time, color = n_rows, group = n_rows)) +
-  geom_point(aes(x = n_threads, y = time, color = n_rows))
+  geom_line(aes(x = n_threads, y = avg_time / 60, color = n_rows, group = n_rows)) +
+  geom_point(aes(x = n_threads, y = avg_time / 60, color = n_rows)) +
+  scale_y_continuous(
+    "Tempo de processamento (minutos)",
+    labels = scales::label_number(),
+    limits = c(0, 25)
+  ) +
+  scale_x_continuous(
+    "Número de threads",
+    labels = scales::label_number(),
+    limits = c(5, 30)
+  ) +
+  scale_color_continuous(
+    "Número de\nobservações",
+    labels = scales::label_number(),
+    breaks = c(100, 200, 300) * 1000
+  ) +
+  ggtitle("Tempo de processamento por combinação\nde número de observações e de threads")
+
+melted_timings <- data.table::melt(
+  timings,
+  id.vars = c("n_threads", "n_rows"),
+  measure.vars = c("expected_speedup", "actual_speedup"),
+  variable.name = "type",
+  value.name = "speedup"
+)
+
+ggplot(melted_timings) +
+  geom_line(
+    aes(
+      x = n_threads,
+      y = speedup,
+      color = n_rows,
+      linetype = type,
+      group = type
+    )
+  ) +
+  geom_point(aes(x = n_threads, y = speedup, color = n_rows)) +
+  facet_wrap(
+    ~ n_rows,
+    nrow = 1,
+    labeller = as_labeller(
+      c("1e+05" = "100 000", "2e+05" = "200 000", "3e+05" = "300 000")
+    )
+  ) +
+  scale_y_continuous(
+    "Speed-up (referência: tempo de processamento com 5 threads)",
+    labels = scales::label_number(suffix = "x"),
+    limits = c(1, 6)
+  ) +
+  scale_x_continuous(
+    "Número de threads",
+    labels = scales::label_number(),
+    limits = c(5, 30)
+  ) +
+  scale_color_continuous(
+    "Número de\nobservações",
+    labels = scales::label_number(),
+    breaks = c(100, 200, 300) * 1000
+  ) +
+  scale_linetype_discrete(
+    "Speed-up",
+    labels = c("Esperado", "Realizado")
+  ) +
+  ggtitle("Speed-up: esperado vs realizado")
 ```

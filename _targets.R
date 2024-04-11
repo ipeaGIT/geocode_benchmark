@@ -85,10 +85,11 @@ list(
   tar_target(preprocessed_cnes, preprocess_cnes(cnes_path)),
   tar_target(n_threads, c(5, 10, 15, 20, 25, 28)),
   tar_target(n_rows, c(100000, 200000, 300000)),
+  tar_target(n_samples, 1:5),
   tar_target(
     timings,
     calculate_processing_times(preprocessed_cnes, n_threads, n_rows),
-    pattern = cross(n_threads, n_rows),
+    pattern = cross(n_threads, n_rows, n_samples),
     iteration = "list"
   ),
   tar_render(readme, "README.Rmd", "README.md")
