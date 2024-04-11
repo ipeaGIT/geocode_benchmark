@@ -61,7 +61,7 @@ calculate_processing_times <- function(locations, n_threads, n_rows) {
   tictoc::tic()
   geocoded_cnes <- geocodepro::geocode(
     sample_locations,
-    locator = paste0("../../data-raw/locators/BRA_", n_threads, "/BRA.loc"),
+    locator = paste0("C://StreetMap/NewLocators/BRA_", n_threads, "/BRA.loc"),
     address_fields = address_fields,
     cache = FALSE
   )
@@ -83,7 +83,7 @@ list(
     format = "file_fast"
   ),
   tar_target(preprocessed_cnes, preprocess_cnes(cnes_path)),
-  tar_target(n_threads, c(4, 6, 8)),
+  tar_target(n_threads, c(5, 10, 15, 20, 25, 28)),
   tar_target(n_rows, c(100000, 200000, 300000)),
   tar_target(
     timings,

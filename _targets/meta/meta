@@ -1,16 +1,18 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|38da22826de0c815|||||||||||||||
-calculate_processing_times|function|e872d4bb41b135fa|||||||||||||||
+.Random.seed|object|4270aecd52241a6c|||||||||||||||
+calculate_processing_times|function|f71855b87ff0e0bc|||||||||||||||
 cnes_path|stem|7d818ba337bba730|c8130d219d24214f|ef46db3751d8e999|-1133482722|../../data-raw/cnes/2022/BANCO_ESTAB_IPEA_COMP_08_2022_DT_25_10_2023.xlsx|t19661.5628853521s|92d871e775c01b46|64148664|file_fast|local|vector|||0||
 geocode_cnes|function|770ba35b6ee2cc91|||||||||||||||
 n_rows|stem|4aa74f9d114823f6|921c777d97b725af|ef46db3751d8e999|-1188214191||t19823.8096639912s|a44f74ecaf054496|60|rds|local|vector||n_rows_af1549b3*n_rows_2e398907*n_rows_bdf7d45e|0||
-n_threads|stem|58bbc2e93c7a8734|010abaa3ca913c25|ef46db3751d8e999|596058023||t19823.8096654495s|710c4f02beb47ff7|57|rds|local|vector||n_threads_900eea25*n_threads_ecd1727c*n_threads_d649d0e9|0||
+n_threads|stem|172a9de2e1c4d414|02f3359bff4df6b1|ef46db3751d8e999|596058023||t19824.6883558173s|1d635f53cb385f1d|65|rds|local|vector||n_threads_520fcd9e*n_threads_d5551afe*n_threads_2758c7bb*n_threads_ab1b214a*n_threads_4753f573*n_threads_a5bc79ed|0||
 preprocess_cnes|function|b9a551ce812bdb82|||||||||||||||
 preprocessed_cnes|stem|0f6e6bd313c39b63|7bab27d091ea7ebc|69d5c0d7830da571|2145641412||t19823.6682117463s|2f9b7fee6d633e4b|6502125|rds|local|vector|||49.37|Expecting logical in AB1799  R1799C28 got X. Expecting logical in AB2522  R2522C28 got X. Expecting logical in AB4918  R4918C28 got X. Expecting logical in AB5149  R5149C28 got X. Expecting logical in AB7681  R7681C28 got X. Expecting logical in AB7689  R7689C28 got X. Expecting logical in AB13285  R13285C28 got X. Expecting logical in AB13288  R13288C28 got X. Expecting logical in AB13338  R13338C28 got X. Expecting logical in AB13346  R13346C28 got X. Expecting logical in AB13380  R13380C28 got X. Expecting logical in AB13382  R13382C28 got X. Expecting logical in AB13422  R13422C28 got X. Expecting logical in AB13465  R13465C28 got X. Expecting logical in AB13475  R13475C28 got X. Expecting logical in AB13487  R13487C28 got X. Expecting logical in AB15717  R15717C28 got X. Expecting logical in AA16724  R16724C27 got X. Expecting logical in AB17639  R17639C28 got X. Expecting logical in AB17641  R17641C28 got X. Expecting logical in AB17642  R17642C28 got X. Expecting logical in AB17702  R17702C28 got X. Expecting logical in AB19044  R19044C28 got X. Expecting logical in AB25167  R25167C28 got X. Expecting logical in AB30337  R30337C28 got X. Expecting logical in AB41997  R41997C28 got X. Expecting logical in AA42722  R42722C27 got X. Expecting logical in AB49084  R49084C28 got X. Expecting logical in AB49114  R49114C28 got X. Expecting logical in AB50549  R50549C28 got X. Expecting logical in AB56543  R56543C28 got X. Expecting logical in AB56551  R56551C28 got X. Expecting logical in AB56563  R56563C28 got X. Expecting logical in AB58071  R58071C28 got X. Expecting logical in AB58073  R58073C28 got X. Expecting logical in AB58074  R58074C28 got X. Expecting logical in AB58076  R58076C28 got X. Expecting logical in AB59464  R59464C28 got X. Expecting logical in AB59469  R59469C28 got X. Expecting logical in AB59532  R59532C28 got X. Expecting logical in|
-readme|stem|f51da4b1a35bf737|5e0e24a9bc6297af|8a679299fc760799|980901812|README.md*README.Rmd|t19823.9224502094s|07c3b0eeebfdae2f|1048|file|local|vector|||3.11||
+readme|stem|7eb51b6100ac71c5|5e0e24a9bc6297af|818712b4ccfe7f35|980901812|README.md*README.Rmd|t19824.776698201s|311fbf45d70373dc|1111|file|local|vector|||18.14||
 report|stem|1aea1df242ac8c78|712270416af01e84|0754ebc40442cffb|787668912|rmarkdown/readme.md*rmarkdown/readme.Rmd|t19823.7995037619s||1015|file|local|vector|||3.36||pandoc document conversion failed with error 1
-timings|pattern|130432e1d4d7761a|4a57d742408374e3||1231382211||||1561|rds|local|list||timings_4ef210a9*timings_ecdb9b63*timings_43bd334c*timings_94b5fea8*timings_1d393aad*timings_5c587ff3*timings_47b833f8*timings_53f41a13*timings_c424833c|8303.73||
+timings|pattern|5f3014a95c7e899b|4a57d742408374e3||1231382211||||3513|rds|local|list||timings_5da9a203*timings_17cdb4ce*timings_2f606631*timings_b59981f6*timings_68435d66*timings_774e3b83*timings_6308a0e0*timings_d1cb9914*timings_7d4c141d*timings_a477ec95*timings_dc3751ca*timings_8549bf2f*timings_b5972af6*timings_71a30b0d*timings_8f830e46*timings_69e2f1d0*timings_dc509965*timings_d9705a88|7600.03||
+timings_17cdb4ce|branch|11c846404031c80a|4a57d742408374e3|0f1aba32e945b66e|-1604442563||t19824.7051751925s|3a40abf18adc8861|196|rds|local|list|timings||930.93||
 timings_1d393aad|branch|a3963f57d234b6dd|4a57d742408374e3|24de1bf629754169|2103403369||t19823.8643919203s|3a40abf18adc8861|196|rds|local|list|timings||917.94||
+timings_2f606631|branch|ec1dea84f2ba6198|4a57d742408374e3|0f1aba32e945b66e|-1365532131||t19824.7212903568s|3a40abf18adc8861|196|rds|local|list|timings||1392.14||
 timings_32066c4e|branch|3b391d84dd3b4ebb|4a57d742408374e3|24de1bf629754169|88347898||t19823.7847216986s|1d5c59973993a867|194|rds|local|list|timings||126.16||
 timings_43bd334c|branch|c8837c826305e8aa|4a57d742408374e3|24de1bf629754169|-1423025273||t19823.84796533s|3a40abf18adc8861|196|rds|local|list|timings||1941.33||
 timings_47b833f8|branch|4153246b89c1c9f8|4a57d742408374e3|24de1bf629754169|-788278328||t19823.8844695293s|1d5c59973993a867|194|rds|local|list|timings||406.64||
@@ -18,6 +20,22 @@ timings_47d82bc8|branch|a8944141ec780d36|4a57d742408374e3|24de1bf629754169|19639
 timings_4ef210a9|branch|5cd19f2535df2eea|4a57d742408374e3|24de1bf629754169|-1666792570||t19823.7958724872s|1d5c59973993a867|194|rds|local|list|timings||764.3||
 timings_53f41a13|branch|cb29851f28f41935|4a57d742408374e3|24de1bf629754169|-2020499808||t19823.8935463328s|3a40abf18adc8861|196|rds|local|list|timings||784.06||
 timings_5c587ff3|branch|601803999bff97d1|4a57d742408374e3|24de1bf629754169|1433365230||t19823.8797615305s|3a40abf18adc8861|196|rds|local|list|timings||1327.71||
+timings_5da9a203|branch|64f498db06ca11f1|4a57d742408374e3|0f1aba32e945b66e|-809266638||t19824.6943817327s|1d5c59973993a867|194|rds|local|list|timings||516.56||
+timings_6308a0e0|branch|d529555e214fc1a4|4a57d742408374e3|0f1aba32e945b66e|1362453478||t19824.7407275464s|1d5c59973993a867|194|rds|local|list|timings||185.69||
+timings_68435d66|branch|40470ef49eee4d6a|4a57d742408374e3|0f1aba32e945b66e|338512554||t19824.7300305275s|3a40abf18adc8861|196|rds|local|list|timings||494.56||
+timings_69e2f1d0|branch|8f083a0d63cd0920|4a57d742408374e3|0f1aba32e945b66e|803157868||t19824.7702141846s|4704cb860dc3a9a3|193|rds|local|list|timings||123.22||
+timings_71a30b0d|branch|d00bb4b374eaebb1|4a57d742408374e3|0f1aba32e945b66e|1709269605||t19824.764763595s|3a40abf18adc8861|196|rds|local|list|timings||238.36||
+timings_774e3b83|branch|1697da24bff10054|4a57d742408374e3|0f1aba32e945b66e|1319852690||t19824.7385772756s|3a40abf18adc8861|196|rds|local|list|timings||738.33||
+timings_7d4c141d|branch|eeb9c09928527ad4|4a57d742408374e3|0f1aba32e945b66e|-953440428||t19824.7507529902s|3a40abf18adc8861|196|rds|local|list|timings||514.11||
+timings_8549bf2f|branch|4b014422e3a56b99|4a57d742408374e3|0f1aba32e945b66e|-777763505||t19824.7604655475s|3a40abf18adc8861|196|rds|local|list|timings||410.75||
+timings_8f830e46|branch|3475df5c92d9f885|4a57d742408374e3|0f1aba32e945b66e|-654707582||t19824.7687516772s|3a40abf18adc8861|196|rds|local|list|timings||343.99||
 timings_94b5fea8|branch|44e773328d1a2505|4a57d742408374e3|24de1bf629754169|792158354||t19823.8537657147s|1d5c59973993a867|194|rds|local|list|timings||501.01||
+timings_a477ec95|branch|1ee512eae3a84bce|4a57d742408374e3|0f1aba32e945b66e|138968605||t19824.7525008995s|dd56a5971d025bfa|192|rds|local|list|timings||150.87||
+timings_b5972af6|branch|58942bae3e9f95ae|4a57d742408374e3|0f1aba32e945b66e|-1459549745||t19824.7620006333s|1d5c59973993a867|194|rds|local|list|timings||131.78||
+timings_b59981f6|branch|d79fefc58367e9bc|4a57d742408374e3|0f1aba32e945b66e|-1421814164||t19824.7243041631s|1d5c59973993a867|194|rds|local|list|timings||259.7||
 timings_c424833c|branch|5b61332cd0bda044|4a57d742408374e3|24de1bf629754169|346096662||t19823.905807871s|3a40abf18adc8861|196|rds|local|list|timings||1059.23||
+timings_d1cb9914|branch|55d2b59d27045a83|4a57d742408374e3|0f1aba32e945b66e|16172788||t19824.7448011158s|3a40abf18adc8861|196|rds|local|list|timings||351.84||
+timings_d9705a88|branch|77be3cceaef393c6|4a57d742408374e3|0f1aba32e945b66e|-227468139||t19824.7765365607s|3a40abf18adc8861|196|rds|local|list|timings||320.2||
+timings_dc3751ca|branch|7086dd49ac50891f|4a57d742408374e3|0f1aba32e945b66e|1827000020||t19824.7557055665s|3a40abf18adc8861|196|rds|local|list|timings||276.66||
+timings_dc509965|branch|33749149b4995344|4a57d742408374e3|0f1aba32e945b66e|942255944||t19824.7728089326s|3a40abf18adc8861|196|rds|local|list|timings||220.34||
 timings_ecdb9b63|branch|9149ef015b329d56|4a57d742408374e3|24de1bf629754169|953696464||t19823.8254940909s|4704cb860dc3a9a3|193|rds|local|list|timings||1365.81||

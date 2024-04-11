@@ -6,6 +6,7 @@ processamento.
 
 ``` r
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.3.3
 library(targets)
 
 timings <- tar_read(timings)
