@@ -83,9 +83,9 @@ list(
     format = "file_fast"
   ),
   tar_target(preprocessed_cnes, preprocess_cnes(cnes_path)),
-  tar_target(n_threads, c(5, 10, 15, 20, 25, 28)),
+  tar_target(n_threads, c(10, 20, 30, 40, 50, 58)),
   tar_target(n_rows, c(100000, 200000, 300000)),
-  tar_target(n_samples, 1:5),
+  tar_target(n_samples, c(1:3)),
   tar_target(
     timings,
     calculate_processing_times(preprocessed_cnes, n_threads, n_rows),

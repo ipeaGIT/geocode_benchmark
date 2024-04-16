@@ -33,12 +33,12 @@ ggplot(timings) +
   scale_y_continuous(
     "Tempo de processamento (minutos)",
     labels = scales::label_number(),
-    limits = c(0, 25)
+    limits = c(0, 15)
   ) +
   scale_x_continuous(
     "Número de threads",
     labels = scales::label_number(),
-    limits = c(5, 30)
+    limits = c(10, 60)
   ) +
   scale_color_continuous(
     "Número de\nobservações",
@@ -74,14 +74,14 @@ ggplot(melted_timings) +
     )
   ) +
   scale_y_continuous(
-    "Speed-up (referência: tempo de processamento com 5 threads)",
+    "Speed-up (referência: tempo de processamento com 10 threads)",
     labels = scales::label_number(suffix = "x"),
-    limits = c(1, 6)
+    limits = c(0, 6)
   ) +
   scale_x_continuous(
     "Número de threads",
     labels = scales::label_number(),
-    limits = c(5, 30)
+    limits = c(10, 60)
   ) +
   scale_color_continuous(
     "Número de\nobservações",
