@@ -52,8 +52,6 @@ calculate_processing_times <- function(locations, n_threads, n_rows) {
     ZIP = "cep"
   )
   
-  set.seed(2024)
-  
   random_indices <- sample(1:nrow(locations), size = n_rows, replace = FALSE)
   
   sample_locations <- locations[random_indices]
@@ -63,7 +61,8 @@ calculate_processing_times <- function(locations, n_threads, n_rows) {
     sample_locations,
     locator = paste0("C://StreetMap/NewLocators/BRA_", n_threads, "/BRA.loc"),
     address_fields = address_fields,
-    cache = FALSE
+    cache = FALSE,
+    verbose = FALSE
   )
   timing <- tictoc::toc()
   
@@ -79,18 +78,21 @@ calculate_processing_times <- function(locations, n_threads, n_rows) {
 list(
   tar_target(
     cnes_path,
-    "../../data-raw/cnes/2022/BANCO_ESTAB_IPEA_COMP_08_2022_DT_25_10_2023.xlsx",
+    "L://Proj_acess_oport/data-raw/cnes/2022/BANCO_ESTAB_IPEA_COMP_08_2022_DT_25_10_2023.xlsx",
     format = "file_fast"
   ),
   tar_target(preprocessed_cnes, preprocess_cnes(cnes_path)),
-  tar_target(n_threads, c(10, 20, 30, 40, 50, 58)),
-  tar_target(n_rows, c(100000, 200000, 300000)),
-  tar_target(n_samples, c(1:3)),
+  tar_target(n_threads, c(10, 15, 20, 25, 30, 35, 38)),
+  tar_target(n_rows, 100000),
+  tar_target(n_samples, c(1:5)),
+  tar_target(old_server_timings_path, "data/old_server_timings"),
+  tar_target(new_server_timings_path, "data/new_server_timings"),
   tar_target(
     timings,
     calculate_processing_times(preprocessed_cnes, n_threads, n_rows),
     pattern = cross(n_threads, n_rows, n_samples),
     iteration = "list"
   ),
+  tar_target(consolidated_timings, data.table::rbindlist(timings)),
   tar_render(readme, "README.Rmd", "README.md")
 )

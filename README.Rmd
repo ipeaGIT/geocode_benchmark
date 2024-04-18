@@ -20,36 +20,41 @@ processamento.
 library(ggplot2)
 library(targets)
 
-timings <- tar_read(timings)
-timings <- data.table::rbindlist(timings)
+old_server_timings <- readRDS(tar_read(old_server_timings_path))
+old_server_timings[, server := "old"]
 
-timings <- timings[, .(avg_time = mean(time)), by = .(n_threads, n_rows)]
-timings[, expected_speedup := n_threads / n_threads[1], by = n_rows]
-timings[, actual_speedup := avg_time[1] / avg_time, by = n_rows]
+new_server_timings <- readRDS(tar_read(new_server_timings_path))
+new_server_timings[, server := "new"]
+
+timings <- rbind(old_server_timings, new_server_timings)
+
+timings <- timings[
+  ,
+  .(avg_time = mean(time)),
+  by = .(n_threads, n_rows, server)
+]
+timings[, expected_speedup := n_threads / n_threads[1], by = .(n_rows, server)]
+timings[, actual_speedup := avg_time[1] / avg_time, by = .(n_rows, server)]
 
 ggplot(timings) +
-  geom_line(aes(x = n_threads, y = avg_time / 60, color = n_rows, group = n_rows)) +
-  geom_point(aes(x = n_threads, y = avg_time / 60, color = n_rows)) +
+  geom_line(aes(x = n_threads, y = avg_time / 60, color = server, group = server)) +
+  geom_point(aes(x = n_threads, y = avg_time / 60, color = server)) +
   scale_y_continuous(
     "Tempo de processamento (minutos)",
     labels = scales::label_number(),
-    limits = c(0, 15)
+    limits = c(0, 5)
   ) +
   scale_x_continuous(
     "Número de threads",
     labels = scales::label_number(),
-    limits = c(10, 60)
+    limits = c(10, 40)
   ) +
-  scale_color_continuous(
-    "Número de\nobservações",
-    labels = scales::label_number(),
-    breaks = c(100, 200, 300) * 1000
-  ) +
-  ggtitle("Tempo de processamento por combinação\nde número de observações e de threads")
+  scale_color_discrete("Servidor", labels = c("Novo", "Antigo")) +
+  ggtitle("Tempo de processamento por número de threads")
 
 melted_timings <- data.table::melt(
   timings,
-  id.vars = c("n_threads", "n_rows"),
+  id.vars = c("n_threads", "n_rows", "server"),
   measure.vars = c("expected_speedup", "actual_speedup"),
   variable.name = "type",
   value.name = "speedup"
@@ -60,37 +65,28 @@ ggplot(melted_timings) +
     aes(
       x = n_threads,
       y = speedup,
-      color = n_rows,
+      color = server,
       linetype = type,
       group = type
     )
   ) +
-  geom_point(aes(x = n_threads, y = speedup, color = n_rows)) +
+  geom_point(aes(x = n_threads, y = speedup, color = server)) +
   facet_wrap(
-    ~ n_rows,
+    ~ server,
     nrow = 1,
-    labeller = as_labeller(
-      c("1e+05" = "100 000", "2e+05" = "200 000", "3e+05" = "300 000")
-    )
+    labeller = as_labeller(c("new" = "Novo", "old" = "Antigo"))
   ) +
   scale_y_continuous(
     "Speed-up (referência: tempo de processamento com 10 threads)",
     labels = scales::label_number(suffix = "x"),
-    limits = c(0, 6)
+    limits = c(1, 4)
   ) +
   scale_x_continuous(
     "Número de threads",
     labels = scales::label_number(),
-    limits = c(10, 60)
+    limits = c(10, 40)
   ) +
-  scale_color_continuous(
-    "Número de\nobservações",
-    labels = scales::label_number(),
-    breaks = c(100, 200, 300) * 1000
-  ) +
-  scale_linetype_discrete(
-    "Speed-up",
-    labels = c("Esperado", "Realizado")
-  ) +
+  scale_color_discrete("Servidor", labels = c("Novo", "Antigo")) +
+  scale_linetype_discrete("Speed-up", labels = c("Esperado", "Realizado")) +
   ggtitle("Speed-up: esperado vs realizado")
 ```
