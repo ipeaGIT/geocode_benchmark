@@ -75,18 +75,49 @@ calculate_processing_times <- function(locations, n_threads, n_rows) {
   return(test_summary)
 }
 
+dummy_geocode_call <- function() {
+  result <- reticulate::use_condaenv(
+    "C://Program Files/ArcGIS/Pro/bin/Python/envs/arcgispro-py3"
+  )
+  
+  locations <- data.frame(
+    logradouro = "Avenida Venceslau Brás, 72",
+    bairro = "Botafogo",
+    cidade = "Rio de Janeiro",
+    uf = "RJ",
+    cep = "22290-140"
+  )
+  
+  result <- geocodepro::geocode(
+    locations,
+    address_fields = geocodepro::address_fields_const(
+      Address_or_Place = "logradouro",
+      Neighborhood = "bairro",
+      City = "cidade",
+      State = "uf",
+      ZIP = "cep"
+    ),
+    cache = FALSE,
+    verbose = FALSE
+  )
+  
+  return(result)
+}
+
 list(
+  tar_target(a_dummy_geocode_call, dummy_geocode_call(), cue = tar_cue("always")),
   tar_target(
     cnes_path,
     "L://Proj_acess_oport/data-raw/cnes/2022/BANCO_ESTAB_IPEA_COMP_08_2022_DT_25_10_2023.xlsx",
     format = "file_fast"
   ),
   tar_target(preprocessed_cnes, preprocess_cnes(cnes_path)),
-  tar_target(n_threads, c(10, 15, 20, 25, 30, 35, 38)),
+  tar_target(n_threads, c(10, 15, 20, 25, 28)),
   tar_target(n_rows, 100000),
   tar_target(n_samples, c(1:5)),
   tar_target(old_server_timings_path, "data/old_server_timings"),
   tar_target(new_server_timings_path, "data/new_server_timings"),
+  tar_target(third_server_timings_path, "data/third_server_timings"),
   tar_target(
     timings,
     calculate_processing_times(preprocessed_cnes, n_threads, n_rows),
