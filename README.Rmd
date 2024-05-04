@@ -29,7 +29,10 @@ new_server_timings[, server := "new"]
 third_server_timings <- readRDS(tar_read(third_server_timings_path))
 third_server_timings[, server := "third"]
 
-timings <- rbind(old_server_timings, new_server_timings, third_server_timings)
+fourth_server_timings <- readRDS(tar_read(fourth_server_timings_path))
+fourth_server_timings[, server := "fourth"]
+
+timings <- rbind(old_server_timings, new_server_timings, third_server_timings, fourth_server_timings)
 
 timings <- timings[
   ,
@@ -52,7 +55,7 @@ ggplot(timings) +
     labels = scales::label_number(),
     limits = c(10, 40)
   ) +
-  scale_color_discrete("Servidor", labels = c("Novo", "Antigo", "Terceiro")) +
+  scale_color_discrete("Servidor", labels = c("Novo", "Antigo", "Terceiro", "Quarto")) +
   ggtitle("Tempo de processamento por número de threads")
 
 melted_timings <- data.table::melt(
@@ -77,7 +80,7 @@ ggplot(melted_timings) +
   facet_wrap(
     ~ server,
     nrow = 1,
-    labeller = as_labeller(c("new" = "Novo", "old" = "Antigo", "third" = "Terceiro"))
+    labeller = as_labeller(c("new" = "Novo", "old" = "Antigo", "third" = "Terceiro", "fourth" = "Quarto"))
   ) +
   scale_y_continuous(
     "Speed-up (referência: tempo de processamento com 10 threads)",

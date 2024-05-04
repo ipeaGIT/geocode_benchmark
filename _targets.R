@@ -118,6 +118,7 @@ list(
   tar_target(old_server_timings_path, "data/old_server_timings"),
   tar_target(new_server_timings_path, "data/new_server_timings"),
   tar_target(third_server_timings_path, "data/third_server_timings"),
+  tar_target(fourth_server_timings_path, "data/fourth_server_timings"),
   tar_target(
     timings,
     calculate_processing_times(preprocessed_cnes, n_threads, n_rows),
